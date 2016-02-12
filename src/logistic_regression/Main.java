@@ -14,8 +14,8 @@ public class Main {
         final String REGEX = "\\s*,\\s*";
         final int N_INPUT_ATTRIBUTES = 2;
         final double LEARNING_RATE = 0.05;
-        final int N_ITERATIONS = 10000;
-        final boolean VERBOSE = true;
+        final int N_ITERATIONS = 40000;
+        final boolean VERBOSE = false;
 
         ArrayList<ArrayList<Double>> X = new ArrayList<>();
         ArrayList<Integer> y = new ArrayList<>();
@@ -52,7 +52,7 @@ public class Main {
 
         System.out.printf("Initial cost = %f\n", classifier.computeCost(examples));
         System.out.println("== Starting Training ==");
-        System.out.printf("Learning Rate = %f, No. of iterations = %d", LEARNING_RATE, N_ITERATIONS);
+        System.out.printf("Learning Rate = %f, No. of iterations = %d\n", LEARNING_RATE, N_ITERATIONS);
         classifier.train(examples, LEARNING_RATE, N_ITERATIONS, VERBOSE);
 
         System.out.println("== Training Complete ==");

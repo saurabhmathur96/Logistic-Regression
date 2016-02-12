@@ -20,6 +20,12 @@ public class BinaryClassifier {
         return 1.0 / (1 + Math.exp(-z));
     }
 
+    /**
+     * computes the probability that the given set of inputs have label 1.
+     *
+     * @param inputs input values
+     * @return probability that label = 1
+     */
     public double computeHypothesis(double[] inputs) {
         double summation = 0.0;
         summation += biasWeight;
@@ -30,6 +36,12 @@ public class BinaryClassifier {
         return sigmoid(summation);
     }
 
+    /**
+     * computes the cost function which is to be minimized.
+     *
+     * @param examples training data
+     * @return cost
+     */
     public double computeCost(ArrayList<Instance> examples) {
         int m = examples.size();
 
@@ -43,6 +55,16 @@ public class BinaryClassifier {
         return -cost / m;
     }
 
+
+    /**
+     * Optimises the weights using given training data with gradient descent.
+     * calls _trainIteration nIterations number of times.
+     *
+     * @param examples    training data
+     * @param rate        learning rate
+     * @param nIterations number of iterations
+     * @param verbose     prints log after each iteration if true
+     */
     public void train(ArrayList<Instance> examples, double rate, int nIterations, boolean verbose) {
         for (int i = 0; i < nIterations; i++) {
             _trainIteration(examples, rate);
@@ -54,6 +76,13 @@ public class BinaryClassifier {
 
     }
 
+    /**
+     * classifies given inputs as 1 if hypothesis value >= threshold else 0
+     *
+     * @param inputs -
+     * @param threshold -
+     * @return class 0 or 1
+     */
     public int classify(double[] inputs, double threshold) {
         double p = computeHypothesis(inputs);
         if (p >= threshold) {
